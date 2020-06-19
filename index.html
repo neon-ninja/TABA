@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>2018 census means of travel to work</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script
+        src="https://rawcdn.githack.com/robertleeplummerjr/Leaflet.glify/466c3696d9f67b7833089c15317ae9b6d7e5a30f/dist/glify-browser.js"></script>
+    <script src="https://unpkg.com/leaflet-providers@1.3.0/leaflet-providers.js"></script>
+    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.3.7/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+    <script src="https://unpkg.com/leaflet-spin@1.1.0/leaflet.spin.min.js"></script>
+
+    <style>
+        body,
+        html,
+        #map {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .legend {
+            color: white;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+
+        var map = L.map('map', {
+            center: [-41.235726, 172.5118422],
+            zoom: 6
+        });
+        var bounds = map.getBounds();
+        bounds._northEast.lat += 10;
+        bounds._northEast.lng += 10;
+        bounds._southWest.lat -= 10;
+        bounds._southWest.lng -= 10;
+        map.setMaxBounds(bounds);
+        L.tileLayer.provider("CartoDB.DarkMatter").addTo(map);
+
+        map.spin(true, { color: "white" });
+        Papa.parse("travel.csv", {
+            download: true,
+            header: true,
+            dynamicTyping: true,
+            skipEmptyLines: true,
+            complete: function (travel_data) {
+                Papa.parse("sa2_centroids.csv", {
+                    download: true,
+                    header: true,
+                    dynamicTyping: true,
+                    skipEmptyLines: true,
+                    complete: function (sa2_centroids) {
+                        console.log(travel_data.data, sa2_centroids.data);
+                        var sa2_lookup = new Map();
+                        for (var row of sa2_centroids.data) {
+                            sa2_lookup.set(row.code, row)
+                        }
+                        console.log(sa2_lookup)
+                        map.spin(false);
+                    }
+                });
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
