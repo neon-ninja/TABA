@@ -57,6 +57,20 @@
 
         var cmap = chroma.scale("Spectral").domain([100, 0]);
 
+        function renderLines(geojson) {
+            if (window.glLayer) window.glLayer.remove()
+            window.glLayer = L.glify.lines({
+                map: map,
+                data: geojson,
+                opacity: .5,
+                color: function (i, point) {
+                    var c = cmap(point.properties.travel_data.Total).gl();
+                    return { r: c[0], g: c[1], b: c[2] };
+                },
+                weight: .1
+            });
+        }
+
         map.spin(true, { color: "white" });
         Papa.parse("travel.csv", {
             download: true,
@@ -103,25 +117,38 @@
                                 }
                             });
                         }
-                        var geojson = {
+                        window.geojson = {
                             "type": "FeatureCollection",
                             "features": features
                         }
-                        console.log(geojson)
-                        L.glify.lines({
-                            map: map,
-                            data: geojson,
-                            opacity: .5,
-                            color: function(i, point) {
-                                var c = cmap(point.properties.travel_data.Total).gl();
-                                return {r: c[0], g: c[1], b: c[2]};
-                            },
-                            weight: .1
-                        });
+                        console.log(geojson);
+                        renderLines(geojson);
                     }
                 });
             }
         });
+
+
+        var legend = L.control({ position: 'bottomright' });
+        legend.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'info legend');
+            div.innerHTML += `Minimum # people: <output id="num">1</output><br>
+                <input type="range" min="1" max="200" value="1" class="slider" id="minCount" oninput="num.value = this.value"><br>
+                <a href='https://github.com/neon-ninja/TABA'>GitHub</a>
+                <div class="legend-source">Source: <a href="https://datafinder.stats.govt.nz/table/104720-2018-census-main-means-of-travel-to-work-by-statistical-area-2/" target="_blank">Statistics NZ</a></div>
+                `;
+            L.DomEvent.disableClickPropagation(div);
+            return div;
+        };
+        legend.addTo(map);
+        $("#minCount").change(function (e) {
+            console.log(this.value);
+            var filteredGeoJSON = {
+                "type": "FeatureCollection",
+                "features": window.geojson.features.filter(e => e.properties.travel_data.Total > this.value)
+            }
+            renderLines(filteredGeoJSON);
+        })
 
     </script>
 
