@@ -15,6 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.3.7/papaparse.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
     <script src="https://unpkg.com/leaflet-spin@1.1.0/leaflet.spin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.0.3/chroma.min.js"></script>
 
     <style>
         body,
@@ -54,6 +55,8 @@
         map.setMaxBounds(bounds);
         L.tileLayer.provider("CartoDB.DarkMatter").addTo(map);
 
+        var cmap = chroma.scale("Spectral").domain([100, 0]);
+
         map.spin(true, { color: "white" });
         Papa.parse("travel.csv", {
             download: true,
@@ -61,13 +64,14 @@
             dynamicTyping: true,
             skipEmptyLines: true,
             complete: function (travel_data) {
+                window.travel_data = travel_data.data;
+                console.log(window.travel_data);
                 Papa.parse("sa2_centroids.csv", {
                     download: true,
                     header: true,
                     dynamicTyping: true,
                     skipEmptyLines: true,
                     complete: function (sa2_centroids) {
-                        console.log(travel_data.data, sa2_centroids.data);
                         window.sa2_lookup = new Map();
                         for (var row of sa2_centroids.data) {
                             sa2_lookup.set(row.code, row)
@@ -75,7 +79,7 @@
                         console.log(sa2_lookup)
                         map.spin(false);
                         var features = [];
-                        for (var row of travel_data.data) {
+                        for (var row of window.travel_data) {
                             var home_ll = sa2_lookup.get(row.home_SA2);
                             var work_ll = sa2_lookup.get(row.work_SA2);
                             if (!home_ll || !home_ll.latitude) {
@@ -107,6 +111,11 @@
                         L.glify.lines({
                             map: map,
                             data: geojson,
+                            opacity: .5,
+                            color: function(i, point) {
+                                var c = cmap(point.properties.travel_data.Total).gl();
+                                return {r: c[0], g: c[1], b: c[2]};
+                            },
                             weight: .1
                         });
                     }
