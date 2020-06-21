@@ -42,7 +42,9 @@
 
         var map = L.map('map', {
             center: [-41.235726, 172.5118422],
-            zoom: 6
+            zoom: 6,
+            maxZoom: 19,
+            minZoom: 6,
         });
         var bounds = map.getBounds();
         bounds._northEast.lat += 10;
@@ -66,12 +68,47 @@
                     skipEmptyLines: true,
                     complete: function (sa2_centroids) {
                         console.log(travel_data.data, sa2_centroids.data);
-                        var sa2_lookup = new Map();
+                        window.sa2_lookup = new Map();
                         for (var row of sa2_centroids.data) {
                             sa2_lookup.set(row.code, row)
                         }
                         console.log(sa2_lookup)
                         map.spin(false);
+                        var features = [];
+                        for (var row of travel_data.data) {
+                            var home_ll = sa2_lookup.get(row.home_SA2);
+                            var work_ll = sa2_lookup.get(row.work_SA2);
+                            if (!home_ll || !home_ll.latitude) {
+                                console.warn(row.home_SA2);
+                                continue;
+                            }
+                            if (!work_ll || !home_ll.latitude) {
+                                console.warn(row.work_SA2);
+                                continue;
+                            }
+                            features.push({
+                                type: "Feature",
+                                geometry: {
+                                    type: "LineString",
+                                    coordinates: [[home_ll.latitude, home_ll.longitude], [work_ll.latitude, work_ll.longitude]]
+                                },
+                                properties: {
+                                    travel_data: row,
+                                    home_ll: home_ll,
+                                    work_ll: work_ll
+                                }
+                            });
+                        }
+                        var geojson = {
+                            "type": "FeatureCollection",
+                            "features": features
+                        }
+                        console.log(geojson)
+                        L.glify.lines({
+                            map: map,
+                            data: geojson,
+                            weight: .1
+                        });
                     }
                 });
             }
