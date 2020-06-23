@@ -1,0 +1,44 @@
+{
+  "name": "taba",
+  "homepage": "https://neon-ninja.github.io/TABA/",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@flowmap.gl/cluster": "^7.2.0",
+    "@flowmap.gl/core": "^7.2.0",
+    "@flowmap.gl/react": "^7.2.0",
+    "@mapbox/geo-viewport": "^0.4.0",
+    "@types/d3-scale-chromatic": "^1.5.0",
+    "@types/react": "^16.9.38",
+    "d3-scale-chromatic": "^1.5.0",
+    "deck.gl": "^8.1.1",
+    "flowmap.gl": "^4.0.0",
+    "papaparse": "^5.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-map-gl": "^5.2.3",
+    "react-scripts": "^3.3.0-next.80",
+    "typecript": "^0.0.1-security",
+    "typescript": "^3.9.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
+}
