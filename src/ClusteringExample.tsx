@@ -16,7 +16,7 @@
  */
 
 import * as Cluster from '@flowmap.gl/cluster';
-import { Flow, FlowAccessors, isFeatureCollection, Location, LocationAccessors } from '@flowmap.gl/core';
+import { Flow, FlowAccessors, Location, LocationAccessors } from '@flowmap.gl/core';
 import React from 'react';
 import { ViewState } from '@flowmap.gl/core';
 import Example from './Example';

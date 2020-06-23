@@ -16,14 +16,12 @@
  */
 
 import { Flow, FlowAccessors, FlowLayerPickingInfo, Location, LocationAccessors } from '@flowmap.gl/core';
-import FlowMap, { getViewStateForLocations, Highlight, LegendBox, LocationTotalsLegend } from '@flowmap.gl/react';
+import FlowMap, { Highlight, LegendBox, LocationTotalsLegend } from '@flowmap.gl/react';
 import React from 'react';
 import { ViewState } from '@flowmap.gl/core';
 import * as d3scaleChromatic from 'd3-scale-chromatic';
 
 export const mapboxAccessToken = process.env.REACT_APP_MapboxAccessToken;
-
-const SHOW_TOP_FLOWS = 10000;
 
 export interface Props extends FlowAccessors, LocationAccessors {
   locations: Location[];
@@ -71,7 +69,6 @@ export default class Example extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    const { locations, getLocationCentroid } = props;
     this.initialViewState = {
       latitude: -41.235726,
       longitude: 172.5118422,
@@ -103,7 +100,6 @@ export default class Example extends React.Component<Props, State> {
 
   renderTooltip() {
     const { tooltip } = this.state;
-    console.log(this.state, tooltip)
     if (!tooltip) {
       return null;
     }
@@ -133,7 +129,6 @@ export default class Example extends React.Component<Props, State> {
           initialViewState={this.initialViewState}
           showTotals={true}
           //showLocationAreas={false}
-          //showOnlyTopFlows={SHOW_TOP_FLOWS}
           colors={DARK_COLORS}
           flows={flows}
           locations={locations}
