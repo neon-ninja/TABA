@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/TABA/static/css/main.9667f384.chunk.css",
+    "main.js": "/TABA/static/js/main.9d68dede.chunk.js",
+    "main.js.map": "/TABA/static/js/main.9d68dede.chunk.js.map",
+    "runtime-main.js": "/TABA/static/js/runtime-main.401a985d.js",
+    "runtime-main.js.map": "/TABA/static/js/runtime-main.401a985d.js.map",
+    "static/js/2.15d56ca4.chunk.js": "/TABA/static/js/2.15d56ca4.chunk.js",
+    "static/js/2.15d56ca4.chunk.js.map": "/TABA/static/js/2.15d56ca4.chunk.js.map",
+    "index.html": "/TABA/index.html",
+    "precache-manifest.315f89f93a511d66d36e755c22fc0f36.js": "/TABA/precache-manifest.315f89f93a511d66d36e755c22fc0f36.js",
+    "service-worker.js": "/TABA/service-worker.js",
+    "static/css/main.9667f384.chunk.css.map": "/TABA/static/css/main.9667f384.chunk.css.map",
+    "static/js/2.15d56ca4.chunk.js.LICENSE": "/TABA/static/js/2.15d56ca4.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.401a985d.js",
+    "static/js/2.15d56ca4.chunk.js",
+    "static/css/main.9667f384.chunk.css",
+    "static/js/main.9d68dede.chunk.js"
+  ]
+}
