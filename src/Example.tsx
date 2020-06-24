@@ -145,6 +145,7 @@ export default class Example extends React.Component<Props, State> {
         />
         <LegendBox bottom={35} right={10}>
           <LocationTotalsLegend colors={DARK_COLORS} />
+          <div className="source">Source: <a href="https://datafinder.stats.govt.nz/table/104720-2018-census-main-means-of-travel-to-work-by-statistical-area-2/data/">Stats NZ</a></div>
         </LegendBox>
         {this.renderTooltip()}
       </>
