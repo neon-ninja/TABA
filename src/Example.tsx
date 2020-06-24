@@ -143,11 +143,8 @@ export default class Example extends React.Component<Props, State> {
           onViewStateChange={this.handleViewStateChange}
           onHighlighted={this.handleHighlight}
         />
-        <LegendBox bottom={35} left={10}>
-          <LocationTotalsLegend colors={DARK_COLORS} />
-        </LegendBox>
         <LegendBox bottom={35} right={10}>
-          {`Showing ${flows.length} flows. `}
+          <LocationTotalsLegend colors={DARK_COLORS} />
         </LegendBox>
         {this.renderTooltip()}
       </>

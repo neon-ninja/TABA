@@ -73,7 +73,8 @@ class ClusteringExample extends React.Component<Props, State> {
   handleViewStateChange = (viewState: ViewState) => {
     const { availableZoomLevels } = this.clusterIndex;
     const { zoom } = viewState;
-    const clusterZoom = Cluster.findAppropriateZoomLevel(availableZoomLevels, zoom);
+    var clusterZoom = Cluster.findAppropriateZoomLevel(availableZoomLevels, zoom);
+    if (clusterZoom === 14) clusterZoom = 13;
     this.setState({
       clusteredLocations: this.clusterIndex.getClusterNodesFor(clusterZoom),
       aggregateFlows: this.aggregateFlowsByZoom.get(clusterZoom),
