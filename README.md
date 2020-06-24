@@ -1,19 +1,24 @@
-This is a minimal example app using [flowmap.gl](https://github.com/teralytics/flowmap.gl).
+# TABA
+
+Visualisation of the 2018 NZ Census commuter data.
+
+This is a flowmap using using [flowmap.gl](https://github.com/teralytics/flowmap.gl).
 The app was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-[Try in action](http://ilyabo.github.io/flowmap.gl-example).
+[Try in action](https://neon-ninja.github.io/TABA/).
 
-[![](https://user-images.githubusercontent.com/351828/47097114-fd049800-d230-11e8-9e59-0e4602cac720.png)](http://ilyabo.github.io/flowmap.gl-example)
+![screenshot](https://neon-ninja.github.io/TABA/screenshot.png)
+![auckland screenshot](https://neon-ninja.github.io/TABA/auckland.png)
 
-# Running
+## Running
 First, clone the repository:
 
-    git clone git@github.com:ilyabo/flowmap.gl-example.git
+    git clone git@github.com:neon-ninja/TABA.git
 
 Then install dependencies:
 
-    cd flowmap.gl-example/
-    npm install
+    cd TABA
+    yarn install
 
 
 Add `.env` file to the project root with a [Mapbox access token](https://www.mapbox.com/help/define-access-token/):
@@ -22,5 +27,8 @@ Add `.env` file to the project root with a [Mapbox access token](https://www.map
 
 Finally, run:
 
-    npm start
+    yarn start
 
+## Description
+
+This visualises the ["2018 Census Main means of travel to work by Statistical Area 2" dataset](https://datafinder.stats.govt.nz/table/104720-2018-census-main-means-of-travel-to-work-by-statistical-area-2/) using a flowmap. Only the "total" column is used. The data was preprocessed with QGIS to optimise file size for load time and reprojected to WGS84. Animated lines flow from the home SA2 true centroid to the work SA2 true centroid. The circles and lines are sized and coloured based on the number of people commuting along each path. The user can hover over a circle to highlight flows in or out of that point. Additionally, points are dynamically clustered depending on zoom level. I chose to show all lines at the same time to reduce the amount of user interaction required to show patterns.
