@@ -49,16 +49,11 @@ const tooltipStyle: React.CSSProperties = {
 };
 
 const DARK_COLORS = {
-  //darkMode: true,
   flows: {
     scheme: (d3scaleChromatic.schemeSpectral[d3scaleChromatic.schemeSpectral.length - 1] as string[]).slice().reverse(),
+    highlighted: "white"
   },
-  /*
-  locationAreas: {
-    normal: '#334',
-  },
-  outlineColor: '#000',
-  */
+  dimmedOpacity: 0
 };
 
 export default class Example extends React.Component<Props, State> {
