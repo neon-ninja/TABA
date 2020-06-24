@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/TABA/static/css/main.52cba4c2.chunk.css",
-    "main.js": "/TABA/static/js/main.4f5de25b.chunk.js",
-    "main.js.map": "/TABA/static/js/main.4f5de25b.chunk.js.map",
+    "main.css": "/TABA/static/css/main.0dc41b05.chunk.css",
+    "main.js": "/TABA/static/js/main.0ab6fa80.chunk.js",
+    "main.js.map": "/TABA/static/js/main.0ab6fa80.chunk.js.map",
     "runtime-main.js": "/TABA/static/js/runtime-main.401a985d.js",
     "runtime-main.js.map": "/TABA/static/js/runtime-main.401a985d.js.map",
-    "static/js/2.f1861754.chunk.js": "/TABA/static/js/2.f1861754.chunk.js",
-    "static/js/2.f1861754.chunk.js.map": "/TABA/static/js/2.f1861754.chunk.js.map",
+    "static/js/2.4b5747db.chunk.js": "/TABA/static/js/2.4b5747db.chunk.js",
+    "static/js/2.4b5747db.chunk.js.map": "/TABA/static/js/2.4b5747db.chunk.js.map",
     "index.html": "/TABA/index.html",
-    "precache-manifest.80b517b87b1035e123465124d17121c6.js": "/TABA/precache-manifest.80b517b87b1035e123465124d17121c6.js",
+    "precache-manifest.ff7a60e0539d5395f479c764d000cb01.js": "/TABA/precache-manifest.ff7a60e0539d5395f479c764d000cb01.js",
     "service-worker.js": "/TABA/service-worker.js",
-    "static/css/main.52cba4c2.chunk.css.map": "/TABA/static/css/main.52cba4c2.chunk.css.map",
-    "static/js/2.f1861754.chunk.js.LICENSE": "/TABA/static/js/2.f1861754.chunk.js.LICENSE"
+    "static/css/main.0dc41b05.chunk.css.map": "/TABA/static/css/main.0dc41b05.chunk.css.map",
+    "static/js/2.4b5747db.chunk.js.LICENSE": "/TABA/static/js/2.4b5747db.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.401a985d.js",
-    "static/js/2.f1861754.chunk.js",
-    "static/css/main.52cba4c2.chunk.css",
-    "static/js/main.4f5de25b.chunk.js"
+    "static/js/2.4b5747db.chunk.js",
+    "static/css/main.0dc41b05.chunk.css",
+    "static/js/main.0ab6fa80.chunk.js"
   ]
 }
