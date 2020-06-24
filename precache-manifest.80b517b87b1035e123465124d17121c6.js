@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "273456c80a360d50dfdac59f05110eda",
+    "revision": "a2b33395e9693e120d3f0451d08b3187",
     "url": "/TABA/index.html"
   },
   {
-    "revision": "8d0f0f0144fd38983067",
-    "url": "/TABA/static/css/main.9667f384.chunk.css"
+    "revision": "abd71dec5ea4387bd642",
+    "url": "/TABA/static/css/main.52cba4c2.chunk.css"
   },
   {
     "revision": "ce85aaad81fa9527144f",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/TABA/static/js/2.f1861754.chunk.js.LICENSE"
   },
   {
-    "revision": "8d0f0f0144fd38983067",
-    "url": "/TABA/static/js/main.342c0dc5.chunk.js"
+    "revision": "abd71dec5ea4387bd642",
+    "url": "/TABA/static/js/main.4f5de25b.chunk.js"
   },
   {
     "revision": "d5e9b8542fa4f9c02794",
