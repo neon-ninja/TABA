@@ -1,6 +1,6 @@
 {
   "name": "taba",
-  "homepage": "https://neon-ninja.github.io/TABA/",
+  "homepage": "./",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

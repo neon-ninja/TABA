@@ -135,6 +135,7 @@ export default class Example extends React.Component<Props, State> {
           mapStyle="mapbox://styles/mapbox/dark-v10"
           animate={true}
           opacity={1}
+          tailLength={.05}
           mixBlendMode="screen"
           mapboxAccessToken={mapboxAccessToken}
           getLocationId={getLocationId}
