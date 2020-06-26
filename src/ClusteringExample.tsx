@@ -17,6 +17,7 @@
 
 import * as Cluster from '@flowmap.gl/cluster';
 import { Flow, FlowAccessors, Location, LocationAccessors } from '@flowmap.gl/core';
+import { LegendBox } from '@flowmap.gl/react';
 import React from 'react';
 import { ViewState } from '@flowmap.gl/core';
 import Example from './Example';
@@ -30,6 +31,7 @@ export interface Props extends FlowAccessors, LocationAccessors {
 interface State {
   clusteredLocations: Location[] | undefined;
   aggregateFlows: Flow[] | undefined;
+  flip?: boolean
 }
 
 class ClusteringExample extends React.Component<Props, State> {
@@ -87,17 +89,37 @@ class ClusteringExample extends React.Component<Props, State> {
     if (!clusteredLocations || !aggregateFlows) {
       return null;
     }
+    var flippedFlows = [];
+    for (var f of aggregateFlows) {
+      if (f.aggregate) {
+        flippedFlows.push({aggregate: true, origin: f.dest, dest: f.origin, count: f.count});
+      } else {
+        flippedFlows.push({home_SA2: f.work_SA2, work_SA2: f.home_SA2, Total: f.Total});
+      }
+    }
     return (
+      <>
       <Example
         locations={clusteredLocations}
-        flows={aggregateFlows}
+        flows={this.state.flip ? flippedFlows : aggregateFlows}
         getLocationId={(loc: Cluster.ClusterNode) => loc.id}
         getLocationCentroid={(loc: Cluster.ClusterNode) => loc.centroid}
-        getFlowOriginId={(flow: Flow) => (Cluster.isAggregateFlow(flow) ? flow.origin : getFlowOriginId(flow))}
-        getFlowDestId={(flow: Flow) => (Cluster.isAggregateFlow(flow) ? flow.dest : getFlowDestId(flow))}
+        getFlowOriginId={(flow: Flow) => Cluster.isAggregateFlow(flow) ? flow.origin : getFlowDestId(flow)}
+        getFlowDestId={(flow: Flow) =>Cluster.isAggregateFlow(flow) ? flow.dest : getFlowOriginId(flow)}
         getFlowMagnitude={(flow: Flow) => (Cluster.isAggregateFlow(flow) ? flow.count : getFlowMagnitude(flow))}
         onViewStateChange={this.handleViewStateChange}
       />
+      
+      <LegendBox bottom={200} right={10}>
+          Reverse flow: <input
+              type="checkbox"
+              checked={!!this.state.flip}
+              onChange={evt => {
+                this.setState({flip: evt.target.checked})
+              }}
+          />
+      </LegendBox>
+      </>
     );
   }
 }
